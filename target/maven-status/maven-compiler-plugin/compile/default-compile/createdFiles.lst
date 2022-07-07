@@ -1,0 +1,7 @@
+br/com/lucaswamser/moviesapi/app/repository/MainApplication.class
+br/com/lucaswamser/moviesapi/app/rest/MoviesController.class
+br/com/lucaswamser/moviesapi/app/repository/MoviesLoader.class
+br/com/lucaswamser/moviesapi/app/model/ProducerWinnerIntervalApiReturn.class
+br/com/lucaswamser/moviesapi/app/repository/MoviesRepository.class
+br/com/lucaswamser/moviesapi/app/model/Movie.class
+br/com/lucaswamser/moviesapi/app/MainApplication.class
