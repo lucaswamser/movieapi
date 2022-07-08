@@ -11,14 +11,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.lucaswamser.moviesapi.app.MainApplication;
+import br.com.lucaswamser.moviesapi.app.rest.MoviesController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MainApplication.class)
@@ -32,8 +35,8 @@ public class IntegrationTest {
     private MockMvc mockMvc;
 
     @Test
-    public void checkIntervalApiOK() throws Exception {
-
+    public void checkIntervalApiOK() throws Exception { 
+        
         mockMvc.perform(get("/movies/winnerinterval"))
                 /*.andDo(print())*/
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -42,11 +45,13 @@ public class IntegrationTest {
                 .andExpect(jsonPath( "$.max[0].followingWin").exists())
                 .andExpect(jsonPath( "$.max[0].producer").exists())
                 .andExpect(jsonPath( "$.max[0].interval").exists())
+                .andExpect(jsonPath( "$.max[0].interval",is(equalTo(13)) ))
                 .andExpect(jsonPath( "$.max[0].previousWin").exists())
                 .andExpect(jsonPath( "$.min").exists())
                 .andExpect(jsonPath( "$.min[0].followingWin").exists())
                 .andExpect(jsonPath( "$.min[0].producer").exists())
                 .andExpect(jsonPath( "$.min[0].interval").exists())
+                .andExpect(jsonPath( "$.min[0].interval",is(equalTo(1)) ))
                 .andExpect(jsonPath( "$.min[0].previousWin").exists());
            
 
